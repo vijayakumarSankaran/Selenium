@@ -1,0 +1,45 @@
+package demo;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Sample {
+
+	static WebDriver driver;
+
+	public static void usingChrome() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Vijayakumar\\Downloads\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://portal2.passportindia.gov.in/AppOnlineProject/user/RegistrationBaseAction?request_locale=en");
+		driver.findElement(By.xpath("//*[@id='frmSample']/table/tbody/tr[6]/td[2]/img")).click();
+		Thread.sleep(2000);
+
+		WebElement dateWidget = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr"));
+
+		List<WebElement> columns = dateWidget.findElements(By.tagName("td"));
+		System.out.println(".........." + columns.size());
+		for (WebElement cell : columns) {
+			// Select 4th Date
+			if (cell.getText().equals("4")) {
+				cell.findElement(By.linkText("4")).click();
+				break;
+			}
+		}
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+		usingChrome();
+//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Vijayakumar\\Downloads\\chromedriver.exe");
+//		WebDriver driver = new ChromeDriver();
+//		driver.get("https://demoqa.com/automation-practice-form");
+//		driver.findElement(By.id("currentAddress")).sendKeys("ttttt");
+//		driver.findElement(By.xpath("//*[@id='subjectsContainer']/div/div[1]/div[2]/div/input")).sendKeys("hhhh");
+//		driver.findElement(By.xpath("//*[@id='genterWrapper']/div[2]/div[1]")).click();
+	}
+
+}
