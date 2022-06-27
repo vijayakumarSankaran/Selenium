@@ -11,12 +11,13 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = "Features"
-		,glue={"step"},
+		,glue={"step"},tags="@SmokeTest",
 				 plugin = {
 	                        "pretty",
 	                        "json:target/cucumber-report/cucumber.json",
 	                        "html:target/cucumber-report/cucumber.html"},
 		monochrome = true
+		
 		)
 
 public class Runner {
